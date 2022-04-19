@@ -39,17 +39,83 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TextField(
-              controller: controller,
+            CustomTextField(
+              label: 'Name',
+              icon: Icons.person,
             ),
-            AnimatedBuilder(
-                animation: controller,
-                builder: (_, __) {
-                  return Text(controller.text);
-                }),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTextField(
+              label: 'Email',
+              icon: Icons.email,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTextField(
+              label: 'Password',
+              icon: Icons.vpn_key,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTextField(
+              label: 'Confirm Password',
+              icon: Icons.vpn_key,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.save),
+                label: Text('Save'),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.restore),
+                label: Text('Reset'),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final IconData? icon;
+
+  const CustomTextField({Key? key, required this.label, this.icon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      //controller: controller,
+      decoration: InputDecoration(
+          labelText: label,
+          hintText: 'Type $label...',
+          border: OutlineInputBorder(),
+          prefixIcon: icon == null ? null : Icon(icon)),
+    );
+    /* AnimatedBuilder(
+                animation: controller,
+                builder: (_, __) {
+                  return Text(controller.text);
+                }), */
   }
 }
